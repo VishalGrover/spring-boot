@@ -160,7 +160,8 @@ func (b Build) Build(context libcnb.BuildContext) (libcnb.BuildResult, error) {
 			return libcnb.BuildResult{}, fmt.Errorf("unable to find dependency\n%w", err)
 		}
 
-		n, err := NewNativeImage(context.Application.Path, args, dep, dc, manifest, entries, result.Plan)
+		n, err := NewNativeImage(context.Application.Path, args, dep, dc, manifest, context.StackID, entries,
+			result.Plan)
 		if err != nil {
 			return libcnb.BuildResult{}, fmt.Errorf("unable to create native image layer\n%w", err)
 		}
